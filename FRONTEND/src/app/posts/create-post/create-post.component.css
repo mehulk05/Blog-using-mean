@@ -1,0 +1,23 @@
+textarea {
+    width: 100%;
+}
+
+input[type="file"] {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+}
+
+.image-preview {
+    height: 8rem;
+    margin: 1rem 0;
+}
+
+.image-preview img {
+    height: 100%;
+}
+
+form{
+    width: 70%;
+    margin: 3rem auto;
+}

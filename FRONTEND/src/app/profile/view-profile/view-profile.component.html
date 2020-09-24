@@ -1,0 +1,56 @@
+<hr>
+<div class="container py-5">
+    <div *ngIf="isloading" style="text-align: center;" class="loading-text">
+        <app-spinner></app-spinner>
+     </div>
+    <div class="row profile" *ngIf = "profile">
+        <div  class="col-md-8 col-xs-12  order-2 order-lg-1">
+            <h2 class="text-black font-weight-light mb-4">{{profile.username}}</h2>
+            <a *ngIf="userId===profile.creator && url =='profile'" [routerLink]="['../edit',profileId]">Edit Profile</a>
+            <p>{{profile.bio}}</p>
+        </div>
+        <div class="col-md-4 col-xs-12 order-1 order-lg-2" >
+            <img src={{profile.imagePath}} class="img-fluid w-50 rounded-circle mb-3">        
+        </div>
+    </div>
+</div>
+
+
+<div class="container py-5">
+    <h2  *ngIf = "profile" class="font-weight-light text-black">{{profile.username}}'s Posts</h2>
+    <hr>
+    <div class="row">
+       
+    <div *ngIf="isloading" style="text-align: center;" class="loading-text">
+        <app-spinner></app-spinner>
+     </div>
+  
+     <div class="col-lg-12">
+       <ng-container *ngIf="posts.length>0">
+        <div class="d-block d-md-flex podcast-entry bg-white mb-5 aos-init aos-animate"
+        *ngFor="let post of posts" data-aos="fade-up">
+        <div class="image" [style.backgroundImage]="'url('+ post.imagePath +') ' "></div>
+      <div class="text">
+        <h3 class="font-weight-light">
+          <a *ngIf="userId===post.creator"  [routerLink]="['../../myposts',post.id]"> {{ post.title }}</a>
+          <a *ngIf="userId!==post.creator"  [routerLink]="['posts',post.id]"> {{ post.title }}</a>
+        </h3>
+        <div class="text-white mb-3">
+          <span class="text-black-opacity-05">
+            <small>By Mike Smith <span class="sep">/</span>{{post.postDate | date:'short'}}</small>
+          </span>
+        </div>
+
+        <div class="desc">
+          <p>{{post.content |slice:0: 170 }}{{post.content.length > 170 ? ' ...Read More' : ''}}</p>
+        </div>
+      </div>
+      </div>
+    </ng-container>
+    <div *ngIf="posts.length==0 && !isloading" style="text-align: center;" class="loading-text">
+      <h2 class="nopost">No Posts written by this user</h2>
+   </div>
+      </div>
+</div>
+</div>
+

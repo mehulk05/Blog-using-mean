@@ -1,0 +1,54 @@
+
+.bg-light {
+  background: #ccc;
+}
+
+.site-section {
+  padding: 2.5em 0;
+}
+
+.podcast-entry .image{
+  height: 300px;
+  background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.podcast-entry .text {
+  width: 100%;
+  padding: 40px;
+  height: 250px;
+  padding: 40px 40px 20px;
+     
+}
+.text p{
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+@media (min-width: 768px)
+{
+  .site-section {
+    padding: 5em 0;
+}
+}
+
+
+
+  @media screen and (max-width:551px){
+
+    .podcast-entry .text {
+      height: 225px;
+      padding: 25px;
+    }
+    .body-text{
+        flex: 2;
+      }
+  }
+
+  .alert-danger{
+    margin: 3rem auto;
+    width: 50%;
+  }

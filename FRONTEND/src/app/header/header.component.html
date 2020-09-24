@@ -1,0 +1,130 @@
+
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
+    <a class="navbar-brand" href="#">BlogApp</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          *ngIf="userIsAuthenticated"
+        >
+          <a class="nav-link" routerLink="/create">Create</a>
+        </li>
+  
+        <li
+        class="nav-item"
+        routerLinkActive="active"
+        *ngIf="userIsAuthenticated && profileisSet"
+      >
+        <a class="nav-link" [routerLink]="['/profile',username]">Profile</a>
+      </li>
+  
+      <li
+      class="nav-item"
+      routerLinkActive="active"
+      *ngIf="userIsAuthenticated && !profileisSet "
+    >
+      <a class="nav-link" [routerLink]="['/profile']">Create Profile</a>
+    </li>
+  
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          *ngIf="userIsAuthenticated"
+        >
+          <a class="nav-link" routerLink="/myposts">MyPosts</a>
+        </li>
+  
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          *ngIf="!userIsAuthenticated"
+        >
+          <a class="nav-link" routerLink="/login">Auth</a>
+        </li>
+  
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          *ngIf="userIsAuthenticated"
+        >
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+  
+      
+      <!-- <div class="form-inline my-2 my-lg-0">
+        <div class="footer-icons">
+          <ul class="navbar-nav">
+            <li class="nav-item inline-block">
+              <a
+                href="https://github.com/mehulk05"
+                aria-label="Github"
+                class="nav-link text-github"
+                ><i class="fa fa-github" style="font-size: 24px; color: black"></i
+              ></a>
+            </li>
+            <li class="nav-item inline-block">
+              <a
+                href="https://medium.com/@mehulkothari05"
+                aria-label="Medium"
+                class="nav-link"
+              >
+                <span
+                  ><img
+                    class="img-circle medium-icon"
+                    width="24"
+                    alt=""
+                    src="https://seeklogo.com/images/M/medium-logo-93CDCF6451-seeklogo.com.png" /></span
+              ></a>
+            </li>
+            <li class="nav-item inline-block">
+              <a
+                href="https://www.instagram.com/mehul_kothari05/"
+                aria-label="Instagram"
+                class="nav-link"
+                ><i
+                  class="fa fa-instagram"
+                  style="font-size: 24px; color: black"
+                ></i
+              ></a>
+            </li>
+            <li class="nav-item inline-block">
+              <a
+                href="https://www.linkedin.com/in/mehul-kothari-765868126/"
+                aria-label="LinkedIn"
+                class="nav-link"
+                ><i
+                  class="fa fa-linkedin"
+                  style="font-size: 24px; color: black"
+                ></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </nav>
+</div>
+

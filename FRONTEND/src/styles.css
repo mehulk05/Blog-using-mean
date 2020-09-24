@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+.loading-text{
+    width: 100%;
+    
+  
+
+}
+
+
+[data-aos^=fade][data-aos^=fade].aos-animate {
+    opacity: 1;
+    transform: translate(0);
+  }
+  
+  body[data-aos-duration="800"] [data-aos] {
+    transition-duration: .8s;
+  }
+  
+  [data-aos^=fade][data-aos^=fade] {
+    
+    transition-property: opacity,transform;
+  }
+  
+
+  .text-black-opacity-05 {
+    color: rgba(0, 0, 0, 0.5);
+   
+}
+.text-black-opacity-05 a{
+  font-size: 16px;
+}
+
+.podcast-entry {
+    -webkit-box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.form-control{
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+
+.form-control:focus {
+  
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+.nopost{
+  margin-top: 25px;
+}

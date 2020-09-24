@@ -1,0 +1,64 @@
+<hr>
+<div class="container">
+  <div *ngIf="isLoading" style="text-align: center;" class="loading-text">
+    <app-spinner></app-spinner>
+ </div>
+  <form [formGroup]="form" (submit)="onSavePost()">
+    <div class="form-group">
+      <input
+        type="text"
+        formControlName="title"
+        class="form-control"
+        placeholder="Post Title"
+      />
+      <span
+        class="text-danger"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
+        >Please enter a post title.</span
+      >
+    </div>
+    <div class="form-group">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="filePicker.click()"
+      >
+        Pick Image
+      </button>
+      <input
+        type="file"
+        class="form-control"
+        #filePicker
+        (change)="onImagePicked($event)"
+      />
+
+      <div
+        class="image-preview"
+        *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid"
+      >
+        <img [src]="imagePreview" [alt]="form.value.title" />
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="form.get('image').invalid && form.dirty && form.touched"
+        >Please Choose a valid image.</span
+      >
+    </div>
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        rows="4"
+        formControlName="content"
+        placeholder="Post Content"
+      ></textarea>
+      <span
+        class="text-danger"
+        *ngIf="form.get('content').invalid && form.get('content').touched"
+        >Please enter a post title.</span
+      >
+    </div>
+    <button class="btn btn-primary" [disabled]="form.invalid" type="submit">
+      Save Post
+    </button>
+  </form>
+</div>

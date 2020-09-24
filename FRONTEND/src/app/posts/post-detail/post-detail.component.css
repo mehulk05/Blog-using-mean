@@ -1,0 +1,12 @@
+.img{
+    margin-top: 5rem;
+    text-align: center;
+    margin: 3rem auto;
+}
+
+.img-responsive{
+    width: 80%;
+}
+.main{
+    margin: 0 auto;
+}

@@ -1,0 +1,110 @@
+
+.bg-light{
+    background-color: #fff !important;
+}
+.navbar-expand-lg .navbar-nav{
+    margin-right: 50px !important;
+    margin-left: auto;
+
+}
+.navbar-brand{
+    font-size: 2rem;
+    font-weight:500;
+}
+.navbar-nav .nav-item{
+    padding: 10px 5px;
+}
+
+.navbar-nav .nav-item.active a{
+    font-weight: bold;
+    color: #007bff
+}
+.navbar-nav .nav-item a{
+    padding: 10px 10px;
+    color: #000;
+    font-size: 16px;
+}
+
+@media (max-width: 551px) {
+    .navbar-nav .nav-item{
+        padding: 0;
+        border-bottom: 1px solid #afa6a6;
+    }
+    .navbar-collapse.collapse.show{
+        height: 100vh;
+    }
+    .collapse.navbar-collapse.sticky {
+        position: fixed;
+        top: 0;
+        z-index: 99999;
+        width: 100%;
+        display: block;
+        background: #f8f8f8;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+    }
+
+    .header-main .footer-icons {
+        width: auto;
+        text-align: right;
+    }
+    .header-main .footer-icons ul {
+        margin: 0;
+        float: right;
+        margin-top: 15px;
+    }
+    .header-main .footer-icons ul li {
+        padding: 10px;
+    }
+    .header-main .footer-icons ul li .fa {
+        font-size: 21px !important;
+    }
+    .header-main .footer-icons ul li img {
+        width: 20px;
+        margin-top: -2px;
+    }
+    .sticky-header {
+        top: 0;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .footer-icons.hidden-xs.hidden-sm {
+        position: fixed;
+        left: 0;
+        background: #fff;
+        z-index: 55;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+        /* vertical-align: middle; */
+        top: 25%;
+        width: auto;
+        text-align: left;
+    }
+    .footer-icons.hidden-xs.hidden-sm ul li {
+        display: block;
+    }
+    .footer-icons.hidden-xs.hidden-sm ul {
+        margin-bottom: 30px;
+    }
+   
+    .main-header>.container {
+        position: fixed;
+        top: 0;
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+        width: 100%;
+        z-index: 55;
+        padding-left: 55px;
+        padding-right: 55px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, .28), 0 2px 6px rgba(0, 0, 0, .23);
+    }
+    .footer-icons ul li:hover {
+        opacity: 0.8;
+        transform: translateY(-3px);
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+.middle {
+    min-height: 450px;
+}

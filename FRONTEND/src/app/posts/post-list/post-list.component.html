@@ -1,0 +1,65 @@
+<div class="container hero" *ngIf = "!userIsAuthenticated">
+  <div class="row align-items-center text-center text-md-left">
+    <div class="col-lg-4">
+      <h1 class="mb-3 display-3">Tell Your Story to the World</h1>
+      <p>Join with us! Login or Register. Write your story and share !!</p>
+    </div>
+
+    <div class="col-lg-8">
+      <img src="assets/asset-1.png" alt="Image" class="img-fluid">
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div *ngIf="isloading" style="text-align: center;" class="loading-text">
+        <app-spinner></app-spinner>
+     </div>
+      <div class="col-lg-8">
+        <div class="d-block d-md-flex podcast-entry bg-white mb-5 aos-init aos-animate"
+          *ngFor="let post of posts;let i=index" data-aos="fade-up">
+          <div class="image" [style.backgroundImage]="'url('+ post.imagePath +') ' "></div>
+          <div class="text">
+            <h3 class="font-weight-dark">
+              <a [routerLink]="[post.id]"> {{ post.title }}</a>
+            </h3>
+            <div class="text-white mb-3">
+              <span class="text-black-opacity-05" *ngFor="let  user of postbyUser">
+                <small *ngIf="user.creator === post.creator">
+                  <a [routerLink]="['public', user.username]">by {{user.username}}</a><span class="sep"> /
+                  </span>{{post.postDate | date:'short'}}</small>
+              </span>
+            </div>
+
+            <div class="desc">
+              <p>{{post.content |slice:0: 170 }}
+                <a [routerLink]="[post.id]">{{post.content.length > 170 ? '...Read More' : ''}}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="featured-user  mb-5 mb-lg-0">
+          <h3 class="mb-4">Popular Podcaster</h3>
+          <ul class="list-unstyled">
+            <li *ngFor="let usr of user">
+              <a [routerLink]="['public',usr.username]" class="d-flex align-items-center">
+                <img src={{usr.imagePath}} class="img-fluid mr-2">
+                <div class="podcaster">
+                  <span class="d-block">{{usr.username}}</span>
+                  <span class="small">{{usr.bio |slice:0: 70}}</span>
+                </div>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

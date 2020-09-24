@@ -1,0 +1,52 @@
+<div class="site-section bg-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12 text-center">
+        <h2 class="font-weight-bold text-black">My Posts</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="alert alert-danger" *ngIf="error && error.error.message" >
+        <p>{{ error.status }} - {{error.error.message}}</p>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="error && !error.error.message" >
+      <p>{{ error.status }} - {{error.statusText}}</p>
+  </div>
+    <div *ngIf="isloading" style="text-align: center;" class="loading-text">
+       <app-spinner></app-spinner>
+    </div>
+    <ng-container *ngIf="posts.length>0">
+
+    
+      <div class="col-md-6" *ngFor = "let post of posts">
+        <div class="d-block podcast-entry bg-white mb-5 aos-init aos-animate" data-aos = "fade-up">
+          <div class="image w-100"  [style.backgroundImage]="'url('+ post.imagePath +') ' "></div>
+          <div class="text w-100">
+            <h3 class="">
+              <a [routerLink]="[post.id]">{{post.title}}</a>
+            </h3>
+
+            <div class="text-white mb-3">
+              <span class="text-black-opacity-05" *ngFor="let  user of postbyUser">
+                <small *ngIf="user.creator === post.creator">
+                  <a [routerLink]="['../public', user.username]">by {{user.username}}</a>
+                  <span class="sep"> /
+                  </span>{{post.postDate | date:'short'}}</small>
+              </span>
+            </div>
+            <p class="mb-4">{{post.content}} </p>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+
+    <div *ngIf="posts.length==0 && !isloading" style="text-align: center;" class="loading-text">
+      <h2>No Posts Found</h2>
+   </div>
+    </div>
+  </div>
+</div>
+
