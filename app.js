@@ -8,11 +8,11 @@ const postRouter = require("./Routes/post");
 const userRoutes = require("./Routes/user");
 const profileRoutes = require("./Routes/profile");
 
-
+var cors = require('cors');
 
 
 const app = express()
-
+app.use(cors({origin: '*'}));
 const PORT = process.env.PORT || 3000
 
 
