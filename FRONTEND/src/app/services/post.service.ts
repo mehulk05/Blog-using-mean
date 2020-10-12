@@ -133,7 +133,7 @@ export class PostService {
       .put(BACKEND_URL + "/" +id, postData)
       .subscribe(response => {
         this.err.next(null)
-        this.router.navigate(["/"]);
+        this.router.navigate(["/myposts"]);
       },
         err => {
           this.err.next(err)

@@ -81,7 +81,7 @@ export class ProfileService {
       .subscribe(response => {
 
         this.err.next(null)
-        this.router.navigate(["/"]);
+        this.router.navigate(["/profile"]);
       },
         err => {
           console.log(err)

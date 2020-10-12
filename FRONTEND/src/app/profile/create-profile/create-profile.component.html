@@ -8,7 +8,7 @@
           type="text"
           formControlName="username"
           class="form-control"
-          placeholder="Post Title"
+          placeholder="Username"
           (focus)="clearError()" (blur)="checkUsername($event.target.value)"
         />
         <ng-container *ngIf="error">
@@ -54,12 +54,12 @@
           class="form-control"
           rows="4"
           formControlName="bio"
-          placeholder="Post Content"
+          placeholder="Your short Bio"
         ></textarea>
         <span
           class="text-danger"
           *ngIf="form.get('bio').invalid && form.get('bio').touched"
-          >Please enter a post title.</span
+          >Please enter a Bio</span
         >
       </div>
       <button class="btn btn-primary" [disabled]="form.invalid || error" type="submit">
