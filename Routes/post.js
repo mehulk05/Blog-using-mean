@@ -28,8 +28,6 @@ const storage = multer.diskStorage({
             .toLowerCase()
             .split(" ")
             .join("-");
-
-        console.log(name)
         const ext = MIME_TYPE_MAP[file.mimetype];
         cb(null, name + "-" + Date.now() + "." + ext);
     }
@@ -44,9 +42,7 @@ router.post("",
 checkAuth,
     multer({ storage: storage }).single("image"),
     (req, res, next) => {
-        console.log(req.body)
         const url = req.protocol + "://" + req.get("host")
-        console.log(url)
         const post = new Post({
             title: req.body.title,
             content: req.body.content,
@@ -71,7 +67,6 @@ checkAuth,
                 
             })
             .catch(e => {
-                console.log(e)
             })
     })
 
@@ -88,7 +83,6 @@ router.put(
             imagePath = url + "/images/" + req.file.filename
         }
 
-        console.log("90",req.body)
         const post = new Post({
             _id: req.body.id,
             title: req.body.title,
@@ -96,7 +90,6 @@ router.put(
             imagePath: imagePath,
             creator: req.userData.userId
         });
-        console.log("98---------------------",post);
         Post.updateOne(
             { _id: req.params.id, creator: req.userData.userId },
             post
@@ -128,7 +121,6 @@ checkAuth,
       }
     })
     .catch(e=>{
-        console.log(e)
     });
   });
   
@@ -160,7 +152,6 @@ router.get("/:id", (req, res, next) => {
   router.delete("/:id", checkAuth, (req, res, next) => {
     Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
       result => {
-        console.log(result);
         if (result.n > 0) {
           res.status(200).json({ message: "Deletion successful!" });
         } else {

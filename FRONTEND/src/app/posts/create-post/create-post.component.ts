@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Post } from '../post.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { mimeType } from './mime-type.validator';
 import { PostService } from '../../services/post.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 
 @Component({
@@ -23,10 +24,12 @@ export class CreatePostComponent implements OnInit {
   private postId: string;
   constructor(
     private ps: PostService,
-    public route: ActivatedRoute
-  ) { }
+    public route: ActivatedRoute,
+    public profileService:ProfileService  ,
+    private router: Router,) { }
 
   ngOnInit(): void {
+    this.checkProfileCreated()
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("postId")) {
         this.mode = "edit";
@@ -53,8 +56,6 @@ export class CreatePostComponent implements OnInit {
         imagePath: postData.imagePath,
         creator: postData.creator
       };
-
-      console.log(postData)
       this.imagePreview = postData.imagePath
       this.form.setValue({
         title: this.post.title,
@@ -92,14 +93,11 @@ export class CreatePostComponent implements OnInit {
 
   onSavePost() {
     this.postdate = new Date()
-    console.log(this.postdate)
     if (this.form.invalid) {
       return;
     }
     this.isLoading = true;
-    console.log(this.form.value)
     if (this.mode === "create") {
-      console.log("inside")
       this.ps.addPost(
         this.form.value.title,
         this.form.value.content,
@@ -116,6 +114,16 @@ export class CreatePostComponent implements OnInit {
       );
     }
     this.form.reset();
+  }
+
+  checkProfileCreated(){
+    this.profileService.getProfileByCreatorId().subscribe(profile => {
+      if(!profile){
+        this.router.navigate(["/profile"])
+      }
+    },e=>{
+      this.router.navigate(["/profile"])
+    })
   }
 }
 

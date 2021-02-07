@@ -34,6 +34,9 @@ export class ViewProfileComponent implements OnInit {
         this.getProfileByUsername(this.profileId)
         this.getCurrentUseersPost(this.profileId)
       }
+      else{
+        this.router.navigate[("/")]
+      }
     })
   }
 

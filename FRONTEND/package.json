@@ -32,7 +32,6 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-  
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^5.1.2",
@@ -46,6 +45,5 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0"
-    
   }
 }

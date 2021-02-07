@@ -29,8 +29,6 @@ const storage = multer.diskStorage({
             .toLowerCase()
             .split(" ")
             .join("-");
-
-        console.log(name)
         const ext = MIME_TYPE_MAP[file.mimetype];
         cb(null, name + "-" + Date.now() + "." + ext);
     }
@@ -44,7 +42,6 @@ router.post("/create", checkAuth,
        
         
         const url = req.protocol + "://" + req.get("host")
-        console.log(url)
         const profile = new Profile({
             username: req.body.username,
             bio: req.body.bio,

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ProfileService } from 'src/app/services/profile.service';
 
 import { AuthService } from '../../auth/auth.service';
 import { PostService } from '../../services/post.service';
@@ -21,17 +22,19 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   userId: String;
   userIsAuthenticated: boolean
   private authStatusSub: Subscription;
+  profile: any
 
   constructor(
     public postsService: PostService,
     public route: ActivatedRoute,
     public router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public profileService:ProfileService
   ) { }
 
   ngOnInit(): void {
     this.url = this.router.url.split("/")[1]
-
+    this.checkProfileExist()
     this.authData()
     this.getErrors()
 
@@ -73,14 +76,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         title: postData.title,
         content: postData.content,
         imagePath: postData.imagePath,
-        creator: postData.creator
+        creator: postData.creator,
+        postDate:postData.postDate
       };
       // this.compareIds(this.userId,this.post.creator)
       this.isloading = false
     })
     e => {
       this.error = e
-      console.log(e)
     }
   }
 
@@ -90,6 +93,18 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.postsService.deletePost(postId);
   }
 
+
+  checkProfileExist() {
+    this.profileService.getProfileByCreatorId().subscribe(profile => {
+      if (profile.profile) {
+        this.profile= profile.profile
+      }else{
+      }
+    },e=>{
+      this.isloading = false
+    })
+
+  }
   ngOnDestroy() {
 
     this.authStatusSub.unsubscribe();

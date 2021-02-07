@@ -47,6 +47,16 @@
     <div class="col-md-9 main" *ngIf="post">
       <div class="card-body">
         <h1>{{post.title}}</h1>
+        <div class="text-white mb-3">
+          <span class="text-black-opacity-05" >
+            <small *ngIf="profile">
+              <a [routerLink]="['public', profile.username]">by {{profile.username}}</a>
+              
+              <span class="sep"> /
+              </span>{{post.postDate | date:'short'}}</small>
+          </span>
+        </div>
+
         <div class="img">
           <img src={{post.imagePath}} alt="" class="img-responsive center">
         </div>

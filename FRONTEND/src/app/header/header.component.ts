@@ -23,12 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
     this.profileisSet = this.profileService.getIsProfileSet()
-    console.log(this.profileisSet)
-
-
-
     this.userIsAuthenticated = this.authService.getIsAuth();
-    console.log(this.userIsAuthenticated)
     if (this.userIsAuthenticated) {
       this.getProfile()
     }
@@ -36,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
-        console.log(isAuthenticated)
         this.userIsAuthenticated = isAuthenticated;
         if (this.userIsAuthenticated) {
           this.getProfile()
@@ -60,13 +54,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         imagePath: prof.profile.imagePath,
         creator: prof.profile.creator
       };
-      console.log(prof)
-      console.log(this.profile)
     },
       err => {
         this.profileisSet = false
         this.username = null
-        console.log(err)
       })
 
   }

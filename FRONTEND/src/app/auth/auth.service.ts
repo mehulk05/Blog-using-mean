@@ -66,7 +66,6 @@ export class AuthService {
       },
         err => {
           this.err.next(err)
-          console.log(err)
         });
   }
 
@@ -82,7 +81,6 @@ export class AuthService {
       },
         err => {
           this.err.next(err)
-          console.log(err)
         });
   }
 

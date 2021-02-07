@@ -32,7 +32,6 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.getUsers()
     this.isloading = true
     this.userId = this.authService.getUserId();
-    console.log(this.userId)
     this.ps.getPosts()
 
     this.postsSub = this.ps.getPostUpdateListener()
@@ -41,6 +40,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
         this.isloading = false;
         this.posts = posts;
+        this.sortPostByDate(posts)
         this.getPostUserbyCreatorId(this.posts)
         console.log("posts is", this.posts)
       }, e => {
@@ -49,6 +49,10 @@ export class PostListComponent implements OnInit, OnDestroy {
       });
   }
 
+  sortPostByDate(post){
+    post.sort((a, b) => new Date(b.postDate).getTime() - new Date(a.postDate).getTime());
+
+  }
   getErrors() {
     this.error = null
     this.ps.err.subscribe(err => {
@@ -63,10 +67,14 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
-
+        
         this.userIsAuthenticated = isAuthenticated;
-
+        this.getUserProfile()
       });
+  }
+
+  getUserProfile(){
+
   }
 
   getUsers() {

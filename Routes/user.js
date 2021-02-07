@@ -54,7 +54,6 @@ router.post("/signup", (req, res, next) => {
       fetchedUser=user;
       return bcrypt.compare(req.body.password, user.password);
     }).then(result=>{
-      console.log(fetchedUser)
       if(!result){
         return res.status(401).json({
           message: "Auth failed inccorect password"

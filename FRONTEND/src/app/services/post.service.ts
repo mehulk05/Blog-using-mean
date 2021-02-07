@@ -41,7 +41,6 @@ export class PostService {
       }),
       err => {
         this.err.next(err)
-        console.log(err)
       }
   }
 
@@ -69,14 +68,13 @@ export class PostService {
       },
         err => {
           this.err.next(err)
-          console.log(err)
         });
   }
 
   getPost(id: string) {
     return this.http.get<{
       _id: string, title: string, content: string, imagePath: string,
-      creator: string;
+      creator: string,postDate:Date;
     }>(
       BACKEND_URL +"/" + id
     );
@@ -107,7 +105,6 @@ export class PostService {
       },
         err => {
           this.err.next(err)
-          console.log(err)
         });
   }
 
@@ -154,7 +151,6 @@ export class PostService {
 
       },
         e => {
-          console.log(e)
           this.err.next(e)
 
         });

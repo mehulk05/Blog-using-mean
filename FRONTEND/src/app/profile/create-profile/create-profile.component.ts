@@ -36,9 +36,7 @@ export class CreateProfileComponent implements OnInit {
 
       }
     })
-
     this.createForm()
-
     this.checkProfileExist()
   }
 
@@ -54,7 +52,6 @@ export class CreateProfileComponent implements OnInit {
         creator: profile.profile.creator
       };
       this.profileId = profile.profile._id
-      console.log(this.profileId)
       this.imagePreview = profile.profile.imagePath
       this.form.setValue({
         username: this.post.username,
@@ -66,13 +63,18 @@ export class CreateProfileComponent implements OnInit {
   }
 
   checkProfileExist() {
+    this.isLoading = true
     this.profileService.getProfileByCreatorId().subscribe(profile => {
       console.log(profile)
-      if (profile.profile) {
+      if (profile) {
         let uname = profile.profile.username
         if (this.mode == "create")
           this.router.navigate(['/profile', uname])
+      }else{
+        this.isLoading = false
       }
+    },e=>{
+      this.isLoading = false
     })
 
   }
@@ -107,7 +109,6 @@ export class CreateProfileComponent implements OnInit {
     this.isLoading = true;
 
     if (this.mode === "create") {
-      console.log("inside")
       this.profileService.addProfile(
         this.form.value.username,
         this.form.value.bio,
@@ -115,7 +116,6 @@ export class CreateProfileComponent implements OnInit {
       );
     }
     else {
-      console.log(this.form.value)
       this.profileService.updateProfile(
         this.profileId,
         this.form.value.username,
@@ -135,7 +135,6 @@ export class CreateProfileComponent implements OnInit {
     this.profileService.getProfileByUsername(uname).subscribe(profile => {
       if (profile && uname !== this.uname) {
         this.error = "Username is already taken!"
-        console.log(this.error)
       }
 
     })

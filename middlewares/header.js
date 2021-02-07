@@ -4,7 +4,6 @@ const headers = new express.Router()
 
 headers.use(bodyParser.json());
 headers.use(bodyParser.urlencoded({ extended: false }));
-console.log("part1")
 
 headers.use((req, res, next) => {
    

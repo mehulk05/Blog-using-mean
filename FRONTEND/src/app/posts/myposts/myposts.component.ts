@@ -31,7 +31,6 @@ export class MypostsComponent implements OnInit, OnDestroy {
         this.getPostUserbyCreatorId(posts)
         this.isloading = false;
         this.posts = posts;
-        console.log("posts is", this.posts)
       }, e => {
         this.isloading = false;
         this.error = e

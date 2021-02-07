@@ -103,7 +103,6 @@ export class ProfileService {
         this.saveProfileData(profile.profile)
       },
         err => {
-          console.log(err)
         })
 
   }
