@@ -34,7 +34,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.url = this.router.url.split("/")[1]
-    this.checkProfileExist()
+    
     this.authData()
     this.getErrors()
 
@@ -79,10 +79,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         creator: postData.creator,
         postDate:postData.postDate
       };
+      this.getPostUserByCreatorId(postData.creator) 
+
       // this.compareIds(this.userId,this.post.creator)
       this.isloading = false
     })
     e => {
+      this.isloading = false
       this.error = e
     }
   }
@@ -94,8 +97,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
 
-  checkProfileExist() {
-    this.profileService.getProfileByCreatorId().subscribe(profile => {
+  getPostUserByCreatorId(id) {
+    this.profileService.getPostUserByCreatorId(id).subscribe(profile => {
       if (profile.profile) {
         this.profile= profile.profile
       }else{
